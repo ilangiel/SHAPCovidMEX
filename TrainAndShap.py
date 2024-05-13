@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 import shap
 import pickle
 from imblearn.metrics import geometric_mean_score
+import matplotlib.pyplot as plt
 
 
 namedata = "Covid19MexInv2021-2022EDOS"
@@ -64,3 +65,12 @@ shap_values = explainer.shap_values(X)
 # Save SHAP values
 fileshapvalues = 'SHAP_TD_' + namedata + '.sav'
 pickle.dump(shap_values, open(fileshapvalues, 'wb'))
+
+
+#plot
+plt.figure()
+shap.summary_plot(shap_values[1], X)
+plt.savefig('shap_summary_plotPoints2021-2022_0.png', dpi=300)
+plt.close()
+
+
